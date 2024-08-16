@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>signup</title>
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+        outline:none;
+        border: none;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background-attachment: fixed;
+  color: #f5f6f7;
+  font-family: Tahoma;
+  font-size: 1em;
+  background-color: black;
+  background-image:url(images/R3Ht2XF5R-Cxkz45yjb5aQ.webp) ;
+}
+
+h1, p {
+  margin: 1em auto;
+  text-align: center;
+}
+body> .h1{
+    text-shadow: 3px 3px 5px black;
+    font-size: 35px;
+}
+
+form {
+  width: 60vw;
+  max-width: 500px;
+  margin:auto;
+  padding: 0 30px 30px 30px;
+  /* background-image: linear-gradient(225deg,black,rgb(55, 55, 211),rgb(158, 91, 221),rgb(34, 228, 34)); */
+  background-attachment: fixed;
+ box-shadow: 0px 0px 5px rgb(206, 197, 197);
+ border-radius: 20px;
+}
+
+fieldset {
+  border: none;
+  padding: 2rem 0;
+  border-bottom: 3px solid #276d27;
+}
+
+fieldset:last-of-type {
+  border-bottom: none;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+input,
+textarea,
+select {
+  margin: 10px 0 0 0;
+  width: 100%;
+  min-height: 2em;
+  outline:none;
+  border: none;
+  background-color: transparent;
+  border: 1px solid #898997;
+  color: aliceblue;
+  border-radius: 10px;
+  padding-left: 10px;
+  backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+ 
+
+}
+
+.inline {
+  width: unset;
+  margin: 0 0.5em 0 0;
+  vertical-align: middle;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 60%;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #5fb1c0;
+  border-color: white;
+
+}
+
+.inline{
+  display: inline; 
+}
+input[type="submit"]:hover{
+    background-color: #93aac2;
+}
+
+
+#name,#fathername,#email,#password,#age,#bio,input[type="submit"]{
+box-shadow: 1px 1px 5px rgb(255, 255, 255)
+;
+}
+body .bodydiv{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: -1;
+}
+input[type="file"]{
+   visibility:hidden;
+   width: 100%;
+   height: 100%;
+   padding: 0;
+   margin: 0;
+   border-radius:20px ;
+}
+.photo{
+  margin-top: 3vh;
+border: 1px solid ;
+height: 30px;
+border-radius: 20px ;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.photo >span{
+position: absolute;
+color: #81c58c;
+font-weight: 700;
+}
+  </style>
+  </head>
+  <body>
+    <div class="bodydiv"></div>
+    <h1 class="h1">signup</h1>
+    <p>Please fill out this form with the required information</p>
+    <form method="post" action="/submit">
+      <fieldset>
+        <label for="first-name">Enter Your Name: <input placeholder="Name" id="name" name="first-name" type="text" required /></label>
+        <label for="father_name">Enter Your Father Name: <input placeholder="Father Name" id="fathername" name="father_name" type="text" required /></label>
+        <label for="email">Enter Your Email: <input placeholder="Email" id="email" name="email" type="email" required /></label>
+        <label for="new-password">Create a New Password: <input placeholder="PSW" id="password" name="new-password" type="password" required /></label>
+      </fieldset>
+    
+      <fieldset>
+        <h3>Gender</h3>
+        <label for="female"><input id="female" type="radio" name="gender" value="female" class="inline" checked /> female</label>
+        <label for="male"><input id="male" type="radio" name="gender" value="male" class="inline" /> male</label>
+        <label for="referrer">Class
+          <select id="referrer" name="referrer">
+            <option value="">(select one)</option>
+            <option value="5">5th standard</option>
+            <option value="6">6th standard</option>
+            <option value="7">7th standard</option>
+            <option value="8">8th standard</option>
+          </select>
+        </label>
+      </fieldset>
+    
+      <fieldset>
+        <label for="profile-picture">Upload a profile picture: <div class="photo"><span>Upload image</span><input id="profile-picture" type="file" name="file" /></div></label>
+        <label for="age">Input your age (years): <input placeholder="Age" id="age" type="number" name="age" min="13" max="120" /></label>
+    
+        <label for="bio">Provide a bio:
+          <textarea id="bio" name="bio" rows="3" cols="30" placeholder="I like coding on the beach..."></textarea>
+        </label>
+      </fieldset>
+    
+      <label for="terms-and-conditions">
+        <input class="inline" id="terms-and-conditions" type="checkbox" required name="terms-and-conditions" /> I accept the <a href="" style="color:rgb(157, 201, 148)">terms and conditions</a>
+      </label>
+    
+      <input type="submit" value="Submit" />
+    </form>
+    
+    <br>
+  </body>
+</html>

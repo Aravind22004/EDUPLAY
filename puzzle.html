@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+#puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 2px;
+    margin-bottom: 20px;
+}
+
+.puzzle-piece {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    background-size: 400px 400px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#message {
+    margin-top: 10px;
+    font-size: 18px;
+    color: green;
+}
+
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="puzzle-container"></div>
+        <div id="message"></div>
+        <button id="shuffle-button">Shuffle</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <script>
+const puzzleContainer = document.getElementById('puzzle-container');
+const shuffleButton = document.getElementById('shuffle-button');
+const message = document.getElementById('message');
+
+const imageSrc = 'map.jpeg'; // Replace with your image URL
+const size = 4; // 4x4 puzzle
+
+let pieces = [];
+
+function createPuzzle() {
+    for (let row = 0; row < size; row++) {
+        for (let col = 0; col < size; col++) {
+            const piece = document.createElement('div');
+            piece.classList.add('puzzle-piece');
+            piece.style.backgroundImage = `url(${imageSrc})`;
+            piece.style.backgroundPosition = `${-col * 100}px ${-row * 100}px`;
+            piece.dataset.index = row * size + col;
+            pieces.push(piece);
+        }
+    }
+    pieces.forEach(piece => puzzleContainer.appendChild(piece));
+    addPieceListeners();
+}
+
+function shufflePuzzle() {
+    pieces.sort(() => Math.random() - 0.5);
+    pieces.forEach(piece => puzzleContainer.appendChild(piece));
+    message.textContent = '';
+}
+
+function addPieceListeners() {
+    let selectedPiece = null;
+
+    pieces.forEach(piece => {
+        piece.addEventListener('click', () => {
+            if (selectedPiece) {
+                const tempIndex = selectedPiece.dataset.index;
+                selectedPiece.dataset.index = piece.dataset.index;
+                piece.dataset.index = tempIndex;
+
+                const tempBackgroundPosition = selectedPiece.style.backgroundPosition;
+                selectedPiece.style.backgroundPosition = piece.style.backgroundPosition;
+                piece.style.backgroundPosition = tempBackgroundPosition;
+
+                selectedPiece = null;
+                checkCompletion();
+            } else {
+                selectedPiece = piece;
+            }
+        });
+    });
+}
+
+function checkCompletion() {
+    const isComplete = pieces.every((piece, index) => piece.dataset.index == index);
+    if (isComplete) {
+        message.textContent = 'Puzzle Completed!';
+    }
+}
+
+shuffleButton.addEventListener('click', shufflePuzzle);
+
+window.onload = createPuzzle;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+   width: 100vw;
+   height: 100vh;
+    color: rgb(5, 5, 5);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(studymaterials/bg.webp)
+  
+}
+.container{
+  position: relative;
+width: 400px;
+overflow: hidden;
+min-height: 400px;
+margin: auto;
+text-align: center;
+border: 1px solid white;
+border-radius: 30px;
+padding: 30px;
+box-shadow:1px 1px 10px#616eaa,
+       1px 12px 10px#616eaa,
+       4px 20px 6px rgba(16, 16, 16,0.4),
+       8px 30px 6px rgba(16, 16, 16,0.2),
+       250px 4px 6px rgba(16, 16, 16,0.4),
+       30px 36px 6px rgba(16, 16, 16,0.2);
+margin-top: 80px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+animation: identifier 5s ease-out infinite;
+background-image:radial-gradient(circle,rgb(158, 158, 240) 1% ,rgb(107, 107, 241),
+rgb(108, 108, 238),rgb(109, 86, 241),rgb(88, 88, 226),rgb(14, 14, 209));
+}
+@keyframes identifier {
+    0%{
+        border-top-right-radius:47% ;
+        border-top-left-radius: 49%;
+        border-bottom-right-radius:51% ;
+        border-bottom-left-radius:40% ;
+     }   
+    30%{
+        border-top-right-radius:38% ;
+        border-top-left-radius: 50%;
+        border-bottom-right-radius:45% ;
+        border-bottom-left-radius:44% ;
+    } 
+    65%{ 
+        border-top-right-radius:50% ;
+        border-top-left-radius: 55%;
+        border-bottom-right-radius:55% ;
+        border-bottom-left-radius:41% ;
+    }
+    100%{
+        border-top-right-radius:47% ;
+        border-top-left-radius: 49%;
+        border-bottom-right-radius:51% ;
+        border-bottom-left-radius:40% ;
+    }
+}
+h1{
+    margin-bottom: 20px;
+}
+#text-name,#text-psw{
+width: 200px;
+height: 30px;
+border-radius: 10px;
+padding-left: 20px;
+border: none;
+outline: none;
+}
+input[type="text" ]::placeholder{
+    font-size: 20px;
+    font-style: italic;
+   text-align:left;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#check-btn{
+    font-size: 16px;
+    letter-spacing: 3px;
+    font-style: oblique;
+    font-weight: 600;
+width: 100px;
+height: 30px;
+border-radius: 5px;
+border: none;
+}
+#result{
+ 
+position: absolute;
+width: auto;
+width: 70%;
+min-height: 50px;
+bottom: 25px;
+color: rgb(14, 14, 13);
+font-size: 18px;
+text-align: center;
+overflow: hidden;
+text-shadow: 0px 0px 10px wheat;
+text-wrap: wrap;
+}
+.text{
+    position: relative;
+    left: -100px;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+body .bodydiv{
+    position: fixed;
+    width: 90%;
+    height: 90%;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    box-shadow: 1px 10px 10px wheat;
+}

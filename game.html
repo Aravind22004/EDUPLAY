@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        body {
+            background-image: url(images/jfPNoZz-Q3aE3nyWQLqf4g.webp);
+            background-position: center;
+            background-size: contain;
+        }
+        .container {
+            width: 80vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 10px auto;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            position: relative;
+        }
+        .gamefield {
+            width: 100%;
+            height: 80%;
+            overflow: hidden;
+            position: relative;
+        }
+        .btns {
+            display: flex;
+            justify-content: space-around;
+        }
+        .btns > button {
+            height: 40px;
+            width: 200px;
+            color: blue;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            background-image: linear-gradient(90deg, rgb(255, 255, 255), rgb(0, 0, 0));
+        }
+        .pics {
+            height: 200px;
+            margin-top: 10px;
+        }
+        .qst {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: larger;
+            font-weight: 700;
+            color: antiquewhite;
+            padding: 1vh;
+        }
+        .pics div {
+            height: 100%;
+            width: 200px;
+            color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 20px;
+        }
+        .pics > div > img {
+            display: block;
+            height: 80%;
+            width: 80%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .over {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(13, 27, 27);
+            position: absolute;
+            z-index: 3;
+            text-align: center;
+            border-radius: 40px;
+            visibility: hidden;
+            transform: scale(0.4);
+        }
+        .overr {
+            width: 100%;
+            height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         font-size: 30px;
+         color: rgb(255, 255, 255);
+         text-shadow: 0px 0px 5px black,
+         0px 0px 17px black
+         ;
+        }
+        .over > h1 {
+            font-size: 90px;
+            font-weight: 700;
+            color: #e0e0e0;
+            text-shadow: 1px 1px 1px #919191,
+            1px 2px 1px #919191,
+            1px 3px 1px #919191,
+            1px 4px 1px #919191,
+            1px 5px 1px #919191,
+            1px 6px 1px #919191,
+            1px 7px 1px #919191,
+            1px 14px 6px rgba(16, 16, 16, 0.4),
+            1px 16px 6px rgba(16, 16, 16, 0.2);
+            letter-spacing: 10px;
+            margin: 10px 0 0px 0;
+        }
+        .over > p {
+            font-size: x-large;
+            color: wheat;
+            text-shadow: 1px 1px 1px #070606;
+        }
+        .over > p > span {
+            font-size: 50px;
+        }
+        #game {
+            display: none;
+        }
+        #game > div {
+            border: 1px solid black;
+        }
+        .green {
+            border-radius: 10px;
+            background-color: rgb(70, 160, 70);
+            box-shadow: 0px 0px 1px green,
+            0px 0px 2px green,
+            0px 0px 5px green,
+            0px 0px 10px green,
+            0px 0px 11px green;
+        }
+        .red {
+            border-radius: 10px;
+            background-color: rgb(192, 16, 10);
+            box-shadow: 0px 0px 1px rgb(192, 16, 10),
+            0px 0px 2px rgb(192, 16, 10),
+            0px 0px 5px rgb(192, 16, 10),
+            0px 0px 10px rgb(192, 16, 10),
+            0px 0px 11px rgb(192, 16, 10);
+        }
+        button.backtoclasses{
+       
+       background-color: transparent;
+       border: 2px solid rgb(255, 255, 255);
+       border-radius: 10px;
+       position: relative;
+       top: 10%;
+       padding: 10px;
+       background-image: linear-gradient(90deg,rgb(190, 54, 54),rgb(60, 60, 226));
+   }
+   a{
+       color: rgb(255, 255, 255);
+       text-decoration: none;
+       font-size: 30px;
+     
+   }
+   button.backtoclasses:hover{
+       box-shadow: 0px 0px 3px rgb(255, 255, 255),
+       0px 0px 4px rgb(255, 255, 255),
+       0px 0px 6px rgb(255, 255, 255),
+       0px 0px 14px rgb(255, 255, 255),
+       0px 0px 16px rgb(255, 255, 255),
+       0px 0px 24px rgb(238, 255, 0),
+       0px 0px 26px rgb(175, 185, 23);
+   }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gamefield">
+            <div class="overr">
+                <h1>
+                    instructions
+                </h1>
+                <p>
+                    <span>1.correct answer = +1</span>
+                    <br>
+                    <span>1.wrong answer = -1</span>
+                </p>
+            </div>
+            <div id="game">
+                <div class="over">
+                    <h1>END</h1>
+                    <br><br>
+                    <p>your score
+                        <br>
+                        <br>
+                        <span id="yourscore">0</span>
+                    </p>
+                    <button class="backtoclasses"><a href="videoplayer.html">back to classes</a></button>
+                </div>
+                <marquee id="myMarquee" behavior="scroll" direction="down" loop="1" scrollamount="10" scrolldelay="1" hspace="10" vspace="10">
+                    <div class="pics">
+                        <div class="options correct">
+                            <img src="riversimg/ganga.jpg" alt="error">
+                            <span>Ganga River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options wrong">
+                            <img src="riversimg/amazon.jpeg" alt="error">
+                            <span>Amazon River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options correct">
+                            <img src="riversimg/shutterstock-1699740004.webp" alt="error">
+                            <span>Yamuna River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options correct">
+                            <img src="riversimg/image-35.png" alt="error">
+                            <span>Brahmaputra River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options wrong">
+                            <img src="riversimg/Yangtze River.jpeg" alt="error">
+                            <span>Yangtze River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options wrong">
+                            <img src="riversimg/Mississippi River.jpeg" alt="error">
+                            <span>Mississippi River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options correct">
+                            <img src="riversimg/vvdxj6b6a9.jpg" alt="error">
+                            <span>Indus River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options wrong">
+                            <img src="riversimg/nile.jpg" alt="error">
+                            <span>Nile River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options wrong">
+                            <img src="riversimg/Danube River.png" alt="error">
+                            <span>Danube River</span>
+                        </div>
+                    </div>
+                    <div class="pics">
+                        <div class="options correct">
+                            <img src="riversimg/godavari.jpg" alt="error">
+                            <span>Godavari River</span>
+                        </div>
+                    </div>
+                </marquee>
+            </div>
+        </div>
+        <div class="qst">
+            find the rivers in india
+        </div>
+        <div class="btns">
+            <button class="start">start</button>
+        </div>
+    </div>
+
+    <script>
+        const game = document.getElementById('game');
+        const marquee = document.getElementById('myMarquee');
+        const start = document.querySelector('.start');
+        const options = document.querySelectorAll('.options');
+        const overdiv = document.querySelector('.over');
+        const instdiv = document.querySelector('.overr');
+        let score = 0;
+        let delay = 2000 * options.length;
+        console.log(delay);
+        marquee.stop();
+
+        function getRandomMargin(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        options.forEach(div => {
+            const randomMargin = getRandomMargin(0, 60);
+            div.style.marginLeft = `${randomMargin}%`;
+        });
+
+        start.addEventListener('click', () => {
+            game.style.display = 'block';
+            instdiv.style.display ='none'; 
+            marquee.start();
+            setTimeout(showScore, delay);
+        });
+
+        function showScore() {
+            overdiv.style.transition = 'all 2s';
+            overdiv.style.transform = 'scale(1)';
+            overdiv.style.visibility = 'visible';
+            document.getElementById('yourscore').innerText = score;
+            marquee.stop();
+        }
+
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                if (option.classList.contains('correct')) {
+                    option.classList.replace('correct', 'green');
+                    score++;
+                } else if (option.classList.contains('wrong')) {
+                    option.classList.replace('wrong', 'red');
+                    score--;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

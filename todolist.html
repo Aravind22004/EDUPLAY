@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100wh;
+            flex-direction: column;
+        }
+        .outer {
+            min-height: 250px;
+            width: 80%;
+            max-width: 400px;
+            background-color: rgb(241, 239, 237);
+            box-shadow: 5px 6px 6px rgb(238, 231, 231);
+            display: flex;
+            flex-direction: column;
+         align-items: center;
+        }
+        .add{
+            
+            width: 90%;
+            height: 50px;
+            background-color:rgb(248, 252, 248);
+            box-shadow: 1px 1px 4px rgb(41, 39, 39);
+            border-radius: 120px;
+            display: flex;
+          
+            position: relative;
+        }
+        .addbutton{
+            margin: 9px 5px;
+            border: 1px solid;
+            transform: scale(1.1);
+            border-radius: 10px;
+            position: absolute;
+            top:5px;
+            right:2px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .tittle{
+            margin: 6px 13px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            outline: none;
+            border: 1px solid;
+            width: 70%;
+            border: none;
+            font-size: 16px;
+            font-family: "Pacifico", cursive; 
+            font-weight: 900;
+        }
+        .topic{
+         text-align: left;
+         margin: 15px;
+
+        }
+        .x{
+            width: 100%;
+        }
+        .todolist{
+            width: 90%;
+            height: 50px;
+            margin-top: 10px;
+            background-color: rgb(225, 230, 230);
+            border-radius: 20px;
+            display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        box-shadow: 5px 5px 10px rgb(92, 92, 94);
+         
+        }
+        .closebtn{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+        }
+        .outerr{
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+         align-items: center;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="x"> <h3 class="topic">TO DO LIST</h3></div>
+       
+        <div class="add">
+           
+            <button type="submit" class="addbutton">add</button>
+            <input type="text" class="tittle" placeholder="enter ">
+        </div>
+        <div class="outerr">
+
+        </div>
+    </div>
+
+    <script>
+        
+        let btn= document.querySelector('.addbutton');
+        let outerr = document.querySelector('.outerr');
+        btn.addEventListener('click',function(){
+        
+            let textt=document.querySelector('.tittle').value;
+            if(textt!=""){
+        let node = document.createElement('div');
+        const divId = Date.now(); // Unique ID for each div
+            node.id = divId;
+        let btn1 = document.createElement('button');
+        let closee = document.createElement('span');
+        let closetext = document.createTextNode("close");
+        closee.setAttribute("class","material-icons");
+        closee.style="font-size:15px";
+        btn1.setAttribute('class',"closebtn");
+        closee.appendChild(closetext);
+        let textnodee = document.createTextNode(textt);
+        let btn1text = document.createTextNode(closee);
+        node.appendChild(textnodee);
+        node.setAttribute('class',"todolist");
+        btn1.appendChild(closee);
+        node.appendChild(btn1);
+        outerr.appendChild(node)
+        document.querySelector('.tittle').value="";
+        saveTasks();
+        btn1.addEventListener('click',function(){
+            const divToDelete = document.getElementById(divId);
+            divToDelete.remove();
+            saveTasks();
+        });
+
+
+    }
+    else{
+        alert('enter the text');
+    }
+        });
+        function saveTasks() {
+                localStorage.setItem('taskList', outerr.innerHTML);
+            }
+        function retrieveTasks() {
+                const storedTasks = localStorage.getItem('taskList');
+                if (storedTasks) {
+                    outerr.innerHTML = storedTasks;
+                    const closeButtons = document.querySelectorAll('.closebtn');
+                    closeButtons.forEach(function (closeButton) {
+                        closeButton.addEventListener('click', function () {
+                            closeButton.parentElement.remove();
+                            saveTasks();
+                        });
+                    });
+                }
+            }
+
+            retrieveTasks();
+      
+    
+     
+    </script>
+</body>
+</html>
